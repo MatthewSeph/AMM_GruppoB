@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>venditore</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author"   content="Matteo Pes">
+        <meta name="keywords" content="Manga, Anime, Shop">
+        <meta name="description" content="Pagina di venditore.html">
+    </head>
+    <body>
+        <form method="GET">
+        <h1>Pagina Venditore</h1>
+        <!--Nome -->    
+        <div>
+        <label for="NomeOggetto">Nome Oggetto</label>
+        <input type="text" name="NomeOggetto" id="NomeOggetto" />
+        </div>
+        
+        <!--Url -->
+        <div>
+        <label for="url">URL Oggetto</label>
+        <input type="url" name="url" id="url" />
+        </div>
+    
+            
+        <!--Descrizione -->
+        <div>
+        <textarea name="Descrizione" id="Descrizione"
+                  rows="10" cols="40">Descrizione Oggetto</textarea>
+        </div>
+        
+        <!--Prezzo -->
+        <div>
+        <label for="prezzo">Prezzo Oggetto</label>
+        <input type="number" name="url" id="prezzo" />
+        </div>
+        
+        <!--Quantità -->
+        <div>
+        <label for="quantità">Quantità Oggetti</label>
+        <input type="range" min='1' max='100'
+               name="quantità" id="quantità" />
+        </div>
+        
+        <a href="http://localhost:8080/AmmMilestone/M1/descrizione.html"> Pagina della descrizione </a>
+        <a href="http://localhost:8080/AmmMilestone/M1/login.html"> Pagina del login </a>
+
+        </form>
+        </body>
+</html>
