@@ -14,10 +14,10 @@ and open the template in the editor.
         <meta name="description" content="Pagina di login.html">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
-    <body>
+    <body id="blocco">
         <h1>Pagina Login</h1>
         <form method="GET">
-        
+        <div id="centralo">
         <!-- Inserimento username e password -->
         <div>
         <label for="username">username</label>
@@ -34,10 +34,12 @@ and open the template in the editor.
             
             
         <!-- Link alle altre pagine html -->
-        <a href="descrizione.html"> Pagina della descrizione </a>
-        <a href="venditore.html"> Pagina del venditore </a>
-        <a href="cliente.html"> Pagina del cliente </a>
-        
+        <div style="margin: 0 auto; text-align: center">
+        <a class="button" href="descrizione.html"> Pagina della descrizione </a>
+        <a class="button" href="venditore.html"> Pagina del venditore </a>
+        <a class="button" href="cliente.html"> Pagina del cliente </a>
+        </div>
+        </div>
         </form>
         
     </body>
