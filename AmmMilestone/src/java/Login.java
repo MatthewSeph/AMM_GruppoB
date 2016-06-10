@@ -59,11 +59,14 @@ public class Login extends HttpServlet {
             response.sendRedirect("Cliente.jsp");
         }
         
+        String username = null;
+        String password = null;
+        
         /*Se viene premuto il bottone..*/
         if(request.getParameter("Submit")!=null){
             /*Leggo il valore dei campi Username e Password*/
-            String username = request.getParameter("Username");
-            String password = request.getParameter("Password");
+            username = request.getParameter("Username");
+            password = request.getParameter("Password");
         }
         /*Genero la lista degli utenti tramite UtentiFactory*/
         ArrayList<Utente> listaUtenti = UtentiFactory.getInstance().getUserList();
@@ -81,7 +84,7 @@ public class Login extends HttpServlet {
                         }
                         /*...Passo l'oggetto venditore alla sessione e visualizzo Venditore.jsp*/
                         session.setAttribute("venditore", u);
-                        response.sendRedirect("Venditore.html");
+                        response.sendRedirect("Venditore.jsp");
                         return;
                     }
                     /*...Se è un cliente...*/
@@ -91,7 +94,7 @@ public class Login extends HttpServlet {
                         }
                         /*...Passo l'oggetto cliente alla sessione e visualizzo Cliente.jsp*/
                         session.setAttribute("cliente", u);
-                        response.sendRedirect("Cliente.html");
+                        response.sendRedirect("Cliente.jsp");
                         return;
                     }
                 }
