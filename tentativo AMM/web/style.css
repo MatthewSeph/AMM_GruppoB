@@ -1,0 +1,134 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 5-apr-2016, 16.45.47
+    Author     : Matth:
+*/
+
+body{
+    font-size: 16px;
+    background-image: url(img/wallp.jpg); 
+    font-family: geniva;
+    color: black;
+    
+}
+
+h1{
+    text-align: center;
+    font-size: 300%;
+    font-family: cursive; 
+}
+
+h1, h2, h3{
+    font-weight: bold;
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: green;
+    margin: 200% auto 200% auto;
+}
+
+
+/** Serve per far apparire il link sottolineato al pasaggio del cursore*/
+a:hover{                        
+  text-decoration: underline;
+  background-color: white;
+}
+
+/** Colori delle schermate di input*/
+input{
+    background-color: #f8f8f8;
+}
+
+input:hover{
+    background-color: green;
+   
+}
+
+.D1{
+    font-weight: bold;
+    display: inline;
+}
+
+table{
+    padding: 50%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td, th{
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+
+tr{
+    background-color: azure;
+    margin-top: 2%;
+    display: block;
+}
+
+th{
+    display: block;
+    font-size: 20px;
+    font: bold;
+    background-color: royalblue;
+}
+
+td{
+    display: 400px;
+}
+
+tr:nth-child(odd) {
+	background: aqua;
+	}
+tr:nth-child(even) {
+	background-color: cornflowerblue;
+}
+
+.img{
+    width: 150px;
+}
+
+.button {
+
+border: 1px solid;
+border-radius: 3px;
+height: 50px;
+line-height: 28px;
+padding: 0 20px;
+text-align: center;
+margin-right: 10px;
+box-sizing: border-box;
+}
+
+label::after, label::before {
+content: '\A';
+white-space: pre;
+vertical-align: middle;
+}
+
+div#centralo{
+    margin: 100px auto 100px auto;
+}
+
+div{
+    margin: 0 auto;
+    width: 60%;
+    border: 2px solid #73AD21;
+    padding: 10px;
+    border-collapse: collapse;
+    background-color: aliceblue;
+}
+
+
