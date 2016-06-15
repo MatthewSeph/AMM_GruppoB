@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-import amm.models.Utente;
-import amm.models.UtentiFactory;
-import amm.models.Venditore;
+import amm.models.Oggetti;
+import amm.models.OggettiFactory;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Matth
  */
-@WebServlet(urlPatterns = {"/login.html"})
-public class Login extends HttpServlet {
+@WebServlet(urlPatterns = {"/Venditore"})
+public class Venditore extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,58 +35,39 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-
-        //Dati utili per la servlet
+       
         HttpSession session = request.getSession();
-        ArrayList<Utente> listaUtenti = UtentiFactory.getInstance().getUserList();        
-        String username=null;
-        String password=null;
+        ArrayList<Oggetti> listaOggetti = OggettiFactory.getInstance().getOggettiList();
+        String nomeOggetto;
+        String url;
+        String Descrizione; 
+        Double prezzo;
+        int quantità;
         
-        
-        //Nel caso l'utente non sia autenticato, mostro la pagina login.jsp
-        if(session.getAttribute("loggedIn")==null){
-             response.sendRedirect("login.jsp");
-                return;
-        }
-        
-        //Se vengono inviati dei dati salvo i dati inseriti nelle variabili precedentemente create
+        //Come per la servlet Login.java, se viene premuto il bottone salvo i dati inseriti dal venditore
         if(request.getParameter("Submit")!=null){ 
-            username=request.getParameter("username");
-            password=request.getParameter("password");
-        }
+            Oggetti nuovoOggetto=new Oggetti();
+            
+            nomeOggetto=request.getParameter("nomeOggetto");
+            url=request.getParameter("url");
+            Descrizione=request.getParameter("Descrizione");
+            prezzo=Double.parseDouble(request.getParameter("prezzo"));
+            quantità=Integer.parseInt(request.getParameter("quantità"));
+            
+            nuovoOggetto.setNome(nomeOggetto);
+            nuovoOggetto.setDescrizione(Descrizione);
+            nuovoOggetto.setQuantita(quantità);
+            nuovoOggetto.setImageURL(url);
+            nuovoOggetto.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
+            
+            
+            
+            
         
-        //Scorro la lista fino a trovare (se esistono) i dati di un utente
-            for(Utente u:listaUtenti){
-                if(u.getUsername().equals(username) && u.getPassword().equals(password)){
-                    session.setAttribute("loggedIn", true);
-                    session.setAttribute("id", u.getId());
-                    
-                    //Attribuisco alle due parti dell'if-else il venditore e il cliente, lasciando il caso in cui non sia autenticato a dopo
-                    
-                    //se è un venditore, carico la pagina venditore.jsp
-                    if(u instanceof Venditore){
-                        session.setAttribute("venditore", u);
-                        response.sendRedirect("venditore.jsp");
-                        return;
-                    }
-                    //altrimenti, carico la pagina cliente.jsp
-                    else{
-                        session.setAttribute("cliente", u);
-                        response.sendRedirect("cliente.jsp");
-                        return;
-                    }
-                }
-            }
-            //Nel caso in cui i dati siano errati mostro un messaggio di errore e permetto di riprovare
-            request.setAttribute("datiErrati", "Hai inserito dei dati sbagliati, riprova!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-    
-    
-    
-    
+            request.setAttribute("conferma", "Oggetto aggiunto alla vendita!");
+            request.getRequestDispatcher("venditore.jsp").forward(request, response);
     }
-
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -125,5 +106,5 @@ public class Login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-            
+
 }

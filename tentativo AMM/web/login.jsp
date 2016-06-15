@@ -14,9 +14,10 @@
     </head>
     <body id="blocco">
         <h1>Pagina Login</h1>
-        <form method="GET">
+        <form method="post" action="login.html">
         <div id="centralo">
         <!-- Inserimento username e password -->
+        <c:if test="${requestScope.datiErrati != null}">${requestScope.datiErrati}</c:if>
         <div>
         <label for="username">username</label>
         <input type="text" name="username" id="username" />
@@ -26,7 +27,7 @@
         
         <!-- Tasti di invio e reset -->
         <div>
-            <input type="submit" value="Invia"/>
+            <input type="submit" name="Submit" value="Invia"/>
             <input type="reset" value="Reimposta"/>
         </div>
             

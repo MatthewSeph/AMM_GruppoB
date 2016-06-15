@@ -4,6 +4,7 @@
     Author     : Matth
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,9 +16,16 @@
         <form method="GET">
         <h1>Pagina Venditore</h1>
         <!--Nome -->    
+        
+        <c:choose>
+            <c:when test="${sessionScope.venditore==null}">
+                <p>Spiacente, non hai i permessi per visualizzare questa pagina!</p>
+            </c:when>
+            <c:otherwise>
+        <c:if test="${requestScope.conferma!=null}">${requestScope.conferma}</c:if>
         <div>
         <label for="NomeOggetto">Nome Oggetto</label>
-        <input type="text" name="NomeOggetto" id="NomeOggetto" />
+        <input type="text" name="nomeOggetto" id="NomeOggetto" />
         </div>
         
         <!--Url -->
@@ -29,14 +37,15 @@
             
         <!--Descrizione -->
         <div>
+            <label for="decrizione">Descrizione oggetto</label>
         <textarea name="Descrizione" id="Descrizione"
-                  rows="10" cols="40">Descrizione Oggetto</textarea>
+                  rows="10" cols="40">Qui!</textarea>
         </div>
         
         <!--Prezzo -->
         <div>
         <label for="prezzo">Prezzo Oggetto</label>
-        <input type="number" name="url" id="prezzo" />
+        <input type="number" name="prezzo" id="prezzo" />
         </div>
         
         <!--Quantità -->
@@ -45,12 +54,19 @@
         <input type="range" min='1' max='100'
                name="quantità" id="quantità" />
         </div>
+        <div>
+            <input type="submit" name="Submit" value="Invia"/>
+            <input type="reset" value="Reimposta"/>
+        </div>
         
         <div style="margin: 0 auto; text-align: center">
         <a class="button" href="descrizione.jsp"> Pagina della descrizione </a>
         <a class="button" href="login.jsp"> Pagina del login </a>
+        
         </div>
         </form>
+            </c:otherwise>
+    </c:choose>
         </body>
 </html>
 
