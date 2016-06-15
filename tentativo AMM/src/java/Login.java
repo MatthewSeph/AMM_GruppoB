@@ -43,13 +43,6 @@ public class Login extends HttpServlet {
         String username=null;
         String password=null;
         
-        
-        //Nel caso l'utente non sia autenticato, mostro la pagina login.jsp
-        if(session.getAttribute("loggedIn")==null){
-             response.sendRedirect("login.jsp");
-                return;
-        }
-        
         //Se vengono inviati dei dati salvo i dati inseriti nelle variabili precedentemente create
         if(request.getParameter("Submit")!=null){ 
             username=request.getParameter("username");
