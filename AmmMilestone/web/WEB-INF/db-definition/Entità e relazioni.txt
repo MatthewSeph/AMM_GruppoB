@@ -1,0 +1,48 @@
+Entità acquirente:
+
+-id
+-nome
+-cognome
+-username
+-password
+-saldo
+
+
+
+Entità venditore:
+
+-id
+-nome
+-cognome
+-username
+-password
+-saldo
+
+
+
+Entità oggetti:
+
+-id
+-nome
+-descrizione
+-urlImmagine
+-quantità
+-prezzo
+
+
+
+
+
+
+Relazioni tra le entità:
+
+1)Per ogni oggetto vi sarà un solo venditore (che effettivamente lo possieda)
+  Per ogni venditore ci potranno essere molti oggetti
+	relazione: uno a molti
+
+2)Per ogni acquirente ci potrà essere un solo venditore (sarà possibile effettuare un acquisto di un oggetto per volta)
+  Per ogni venditore ci potrà essere più di un acquirente (il venditore potrà mettere in listino 20 oggetti e avere due acquirenti diversi)
+	relazione: uno a molti
+3)Per ogni utente ci sarà un solo saldo
+  Per ogni saldo ci sarà un solo utente
+	relazione: uno a uno
