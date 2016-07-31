@@ -16,16 +16,14 @@
         <form method="GET">
         <h1>Pagina Venditore</h1>
         <!--Nome -->    
-        
         <c:choose>
             <c:when test="${sessionScope.venditore==null}">
                 <p>Spiacente, non hai i permessi per visualizzare questa pagina!</p>
             </c:when>
             <c:otherwise>
-        <c:if test="${requestScope.conferma!=null}">${requestScope.conferma}</c:if>
         <div>
         <label for="NomeOggetto">Nome Oggetto</label>
-        <input type="text" name="nomeOggetto" id="NomeOggetto" />
+        <input type="text" name="nomeOggetto" id="nomeOggetto" />
         </div>
         
         <!--Url -->
@@ -52,17 +50,16 @@
         <div>
         <label for="quantità">Quantità Oggetti</label>
         <input type="range" min='1' max='100'
-               name="quantità" id="quantità" />
+               name="quantita" id="quantita" />
         </div>
         <div>
-            <input type="submit" name="Submit" value="Invia"/>
+            <input type="submit" name="SubmitOggetto" value="Invia"/>
             <input type="reset" value="Reimposta"/>
         </div>
         
         <div style="margin: 0 auto; text-align: center">
         <a class="button" href="descrizione.jsp"> Pagina della descrizione </a>
         <a class="button" href="login.jsp"> Pagina del login </a>
-        
         </div>
         </form>
             </c:otherwise>

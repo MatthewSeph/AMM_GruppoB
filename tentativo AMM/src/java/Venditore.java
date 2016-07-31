@@ -4,24 +4,20 @@
  * and open the template in the editor.
  */
 
-import amm.models.Utente;
-import amm.models.UtentiFactory;
-import amm.models.Venditore;
+import amm.models.Oggetti;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Matth
  */
-@WebServlet (urlPatterns = {"/login.html"}) 
-public class Login extends HttpServlet {
+    @WebServlet(urlPatterns = {"/venditore.html"})
+public class Venditore extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,49 +31,18 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-
-        //Dati utili per la servlet
-        HttpSession session = request.getSession();
-        ArrayList<Utente> listaUtenti = UtentiFactory.getInstance().getUserList();        
-        String username=null;
-        String password=null;
         
-        //Se vengono inviati dei dati salvo i dati inseriti nelle variabili precedentemente create
-        if(request.getParameter("Submit")!=null){ 
-            username=request.getParameter("username");
-            password=request.getParameter("password");
+        if(request.getParameter("SubmitOggetto")!=null){
+            Oggetti nuovoOggetto=new Oggetti();
+         
+            nuovoOggetto.setNome(request.getParameter("nomeOggetto"));
+            nuovoOggetto.setDescrizione(request.getParameter("Descrizione"));
+            nuovoOggetto.setImageURL(request.getParameter("url"));
+            nuovoOggetto.setPrezzo(Double.parseDouble(request.getParameter("Prezzo")));
+            nuovoOggetto.setQuantita(Integer.parseInt(request.getParameter("quantita")));
+            
+            request.getRequestDispatcher("riepilogo.jsp").forward(request, response);
         }
-        
-        //Scorro la lista fino a trovare (se esistono) i dati di un utente
-            for(Utente u:listaUtenti){
-                if(u.getUsername().equals(username) && u.getPassword().equals(password)){
-                    session.setAttribute("loggedIn", true);
-                    session.setAttribute("id", u.getId());
-                    
-                    //Attribuisco alle due parti dell'if-else il venditore e il cliente, lasciando il caso in cui non sia autenticato a dopo
-                    
-                    //se è un venditore, carico la pagina venditore.jsp
-                    if(u instanceof Venditore){
-                        session.setAttribute("venditore", u);
-                        response.sendRedirect("venditore.jsp");
-                        return;
-                    }
-                    //altrimenti, carico la pagina cliente.jsp
-                    else{
-                        session.setAttribute("cliente", u);
-                        response.sendRedirect("cliente.jsp");
-                        return;
-                    }
-                }
-            }
-            //Nel caso in cui i dati siano errati mostro un messaggio di errore e permetto di riprovare
-            request.setAttribute("datiErrati", "Hai inserito dei dati sbagliati, riprova!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-    
-    
-    
-    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -118,5 +83,5 @@ public class Login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-            
+
 }
